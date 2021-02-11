@@ -1,12 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+}
+from '@apollo/client';
+import { SnackbarProvider } from 'notistack';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const URL = 'https://downtime-alert.herokuapp.com';
+
+const client = new ApolloClient({
+  uri: URL + '/graphql',
+  cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <SnackbarProvider
+        maxSnack={1}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+      >
+        <App />
+      </SnackbarProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,38 +1,391 @@
 .App {
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--dark-bg-color3);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#chart {
+  position: absolute !important;
+  left: 20%;
+  top: 25%;
+  width: 600px;
+  height: 400px;
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#chart > div {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#chart canvas {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  border-radius: 10px !important;
+}
+
+.toastui-chart-export-menu {
+  position: absolute !important;
+  left: 0% !important;
+  top: -32% !important;
+}
+
+.toastui-chart-tooltip-container {
+  z-index: 120 !important;
+}
+
+#add-website {
+  display: flex;
+  box-sizing: content-box;
+  align-items: center;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 600px;
+  margin: 10px 0;
+  margin-top: 20px;
+  padding: 10px 0;
+  background: var(--dark-bg-color4);
+}
+
+#add-website div {
+  flex-basis: 100%;
+  display: inline-block;
+}
+
+#add-website div form {
+  box-sizing: border-box;
+  width: 97%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#add-website div form input {
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 5px;
+  letter-spacing: 0.04em;
+}
+
+#add-website div form label {
+  color: white;
+  box-sizing: border-box;
+  width: 100%;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+#add-website div form label input {
+  margin-top: 3px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#add-website div form input[type=text] {
+  outline-color: none;
+  background: #0B3E5B;
+  color: white;
+  padding: 10px;
+  transition: 0.3s;
+  width: 97%;
+  padding: 5px 8px;
+  margin-bottom: 5px;
+}
+
+#add-website div form input[type=text]:focus {
+  color: var(--dark-bg-color);
+  background: #B8C5D6;
+  font-weight: 700;
+}
+
+#add-website div form input[type=submit] {
+  width: 80px;
+  font-size: 15px;
+  cursor: pointer;
+  background: var(--primary-color);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+#add-website div form input[type=submit]:hover {
+  filter: brightness(90%);
+}
+
+.moniters-container {
+  background: var(--dark-bg-color3);
+  box-sizing: border-box;
+  width: 100%;
+  height: 70%;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.moniter {
+  flex: 1 1 320px;
+  margin: 10px;
+  background: var(--dark-bg-color4);
+  max-width: 450px;
+  height: 270px;
+  width: 100%;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 15px 15px #13293E,
+              -3px -5px 15px var(--dark-bg-color2);
+}
+
+.moniter-top {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 15%;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.moniter-top .status span {
+  display: inline-block;
+  margin-left: 5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: white;
+}
+
+.moniter-body {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.moniter-body div {
+  box-sizing: border-box;
+  width: 90%;
+  border-radius: 10px;
+}
+
+.moniter-body .body-title {
+  height: 50px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  background: #3D5266;
+}
+
+.moniter-body .body-title span {
+  padding-left: 5px;
+  font-size: 22px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.moniter-body .body-title h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.moniter-body .body-url {
+  margin-top: 10px;
+  background: #3D5266;
+  flex: 0 0 90px;
+  padding: 8px;
+  line-height: 1.3em;
+  word-break: break-word;
+  overflow: auto;
+}
+
+.moniter-body .body-anchor {
+  color: silver;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.moniter-body .body-anchor:hover {
+  color: lightgray;
+}
+
+.moniter-btns {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moniter-btns .start,.stop,.generate {
+  margin-left: 8px;
+}
+
+.moniter-btns button {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  line-height: 20px;
+  min-width: 40px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  cursor: pointer;
   color: white;
+
+  position:relative;
+  text-align:center;
+  overflow: hidden;
 }
 
-.App-link {
-  color: #61dafb;
+.moniter-btns .generate button {
+  padding: 10px 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.moniter-btns .start button {
+  letter-spacing: 0.05em;
+  background: var(--less-primar-color);
+}
+
+.moniter-btns button span {
+  display: block;
+  height: 100%;
+  position: relative;
+  top: 0;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
+
+.moniter-btns button:hover span {
+  top: -40px;
+}
+
+.moniter-btns .stop button {
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+  background: var(--secondary-color);
+}
+
+.moniter-btns .generate button {
+  letter-spacing: 0.01em;
+  background: var(--report);
+}
+
+.moniter-btns button:active {
+  filter: brightness(120%);
+}
+
+
+@media (max-height: 500px) {
+  #add-website div form input {
+    padding: 0;
+    font-size: 10px;
+    height: auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  #add-website div form input[type=text] {
+    padding: 2px 8px;
+    margin-bottom: 5px;
+  }
+
+  #add-website div form label {
+    font-size: 10px;
+  }
+  #add-website div form input[type=submit] {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 790px) {
+  .moniters-container {
+    justify-content: center;
+  }
+
+  #chart {
+    left: 10%;
+  }
+}
+
+@media (max-width: 700px), (max-height: 450px) {
+  #chart {
+    width: 80%;
+    height: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  #add-website {
+    width: 90%;
+  }
+}
+
+@media (max-width: 450px) {
+  .moniter {
+    width: 90%;
+  }
+
+  .moniter-body .body-url {
+    flex: 0 0 50px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 415px) {
+  .moniter-body {
+    min-height: 40%;
+  }
+
+  .moniter-btns {
+    height: 30%;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .moniter-btns .start,.stop,.generate {
+    margin: 0;
+    width: 90%;
+    height: 25px;
+  }
+
+  .moniter-btns button {
+    height: 100%;
+    line-height: 25px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .moniter-btns .generate button span {
+    top: -10px;
+    margin-bottom: 30px;
+  }
+
+  .moniter-btns button:hover span {
+    top: -45px;
   }
 }
